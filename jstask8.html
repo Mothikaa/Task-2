@@ -15,7 +15,7 @@
         background-color: #ffffff;
       }
       .container {
-        background: linear-gradient(to bottom, yellow, pink);
+        background: linear-gradient(to bottom, #fceabb, #c577c5);
         padding: 20px;
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -58,35 +58,35 @@
           <tr>
             <td><b>First Name</b></td>
             <td>
-              <input type="text" name="firstname" style="width: 80%" />
+              <input type="text" name="firstname" style="width: 77%" />
               <span class="error" id="firstnameError"></span>
             </td>
           </tr>
           <tr>
             <td><b>Last Name</b></td>
             <td>
-              <input type="text" name="lastname" style="width: 80%" />
+              <input type="text" name="lastname" style="width: 77%" />
               <span class="error" id="lastnameError"></span>
             </td>
           </tr>
           <tr>
             <td><b>Email</b></td>
             <td>
-              <input type="email" name="email" style="width: 80%" />
+              <input type="email" name="email" style="width: 77%" />
               <span class="error" id="emailError"></span>
             </td>
           </tr>
           <tr>
             <td><b>Password</b></td>
             <td>
-              <input type="password" name="password" style="width: 80%" />
+              <input type="password" name="password" style="width: 77%" />
               <span class="error" id="passwordError"></span>
             </td>
           </tr>
           <tr>
             <td><b>Re-enter Password</b></td>
             <td>
-              <input type="password" name="repassword" style="width: 80%" />
+              <input type="password" name="repassword" style="width: 77%" />
               <span class="error" id="repasswordError"></span>
             </td>
           </tr>
@@ -100,28 +100,28 @@
           <tr>
             <td><b>Age</b></td>
             <td>
-              <input type="number" name="age" style="width: 80%" />
+              <input type="number" name="age" style="width: 77%" />
               <span class="error" id="ageError"></span>
             </td>
           </tr>
           <tr>
             <td><b>Phone Number</b></td>
             <td>
-              <input type="tel" name="phone" style="width: 80%" />
+              <input type="tel" name="phone" style="width: 77%" />
               <span class="error" id="phoneError"></span>
             </td>
           </tr>
           <tr>
             <td><b>Address</b></td>
             <td>
-              <textarea name="address" rows="6" style="width: 80%"></textarea>
+              <textarea name="address" rows="6" style="width: 77%"></textarea>
               <span class="error" id="addressError"></span>
             </td>
           </tr>
           <tr>
             <td><b>State</b></td>
             <td>
-              <input type="text" name="state" style="width: 80%" />
+              <input type="text" name="state" style="width: 77%" />
               <span class="error" id="stateError"></span>
             </td>
           </tr>
@@ -175,7 +175,6 @@
         .addEventListener("submit", function (event) {
           event.preventDefault();
           let isValid = true;
-
           const form = event.target;
           const errorElements = form.querySelectorAll(".error");
           errorElements.forEach(
@@ -192,6 +191,19 @@
               isValid = false;
             }
           });
+          const password = form.querySelector('input[name="password"]').value;
+          const repassword = form.querySelector(
+            'input[name="repassword"]'
+          ).value;
+          const repasswordError = document.getElementById("repasswordError");
+          if (!repassword.trim()) {
+            repasswordError.textContent = "POOR";
+            isValid = false;
+          } else if (password !== repassword) {
+            repasswordError.textContent = "MISMATCH";
+            isValid = false;
+          }
+
           if (isValid) {
             form.submit();
           }
